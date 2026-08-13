@@ -1,0 +1,137 @@
+#include <iostream>
+using namespace std;
+int a[50];
+int n = 0;
+void create()
+{
+    cout << "Enter number of elements: ";
+    cin >> n;
+    cout << "Enter elements: ";
+    for(int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+}
+void display()
+{
+    if(n == 0)
+    {
+        cout << "Array is empty." << endl;
+        return;
+    }
+    cout << "Array elements are: ";
+    for(int i = 0; i < n; i++)
+    {
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+void searchElement()
+{
+    int value;
+    cout << "Enter element to search: ";
+    cin >> value;
+    for(int i = 0; i < n; i++)
+    {
+        if(a[i] == value)
+        {
+            cout << "Element found at position " << i + 1 << endl;
+            return;
+        }
+    }
+      cout << "Element not found." << endl;
+}
+void deleteElement()
+{
+    int pos;
+    if(n == 0)
+    {
+        cout << "Array is empty." << endl;
+        return;
+    }
+    cout << "Enter position to delete: ";
+    cin >> pos;
+    if(pos < 1 || pos > n)
+    {
+        cout << "Invalid position." << endl;
+        return;
+    }
+    for(int i = pos - 1; i < n - 1; i++)
+    {
+        a[i] = a[i + 1];
+    }
+    n--;
+    cout << "Element deleted successfully." << endl;
+}
+void insertElement()
+{
+    int pos, value;
+    if(n == 50)
+    {
+        cout << "Array is full." << endl;
+        return;
+    }
+    cout << "Enter position: ";
+    cin >> pos;
+    if(pos < 1 || pos > n + 1)
+    {
+        cout << "Invalid position." << endl;
+        return;
+    }
+    cout << "Enter value: ";
+    cin >> value;
+    for(int i = n; i >= pos; i--)
+    {
+        a[i] = a[i - 1];
+    }
+    a[pos - 1] = value;
+    n++;
+    cout << "Element inserted successfully." << endl;
+}
+int main()
+{
+    int choice;
+    while(true)
+    {
+        cout << "\n--- ARRAY OPERATIONS ---" << endl;
+        cout << "1. Create" << endl;
+        cout << "2. Display" << endl;
+        cout << "3. Linear Search" << endl;
+        cout << "4. Delete" << endl;
+        cout << "5. Insert" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        switch(choice)
+        {
+            case 1:
+                create();
+                break;
+
+            case 2:
+                display();
+                break;
+
+            case 3:
+                searchElement();
+                break;
+
+            case 4:
+                deleteElement();
+                break;
+
+            case 5:
+                insertElement();
+                break;
+
+            case 6:
+                cout << "Program ended." << endl;
+                return 0;
+
+            default:
+                cout << "Invalid choice." << endl;
+        }
+    }
+
+    return 0;
+}
